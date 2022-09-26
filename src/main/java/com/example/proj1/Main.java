@@ -1,35 +1,40 @@
 package com.example.proj1;
 
+import javax.naming.Name;
+
 public class Main {
     public static void main(String[] args) {
-        try{
-        Employee emp=new Employee("Ivan", "Ruban", -2);
-        emp.PrintEmployee();
-        }catch(FieldLenghtException ex){
+        HRList hr = HRList.getInstance();
+        try {
+            Employee emp = new Employee("Ivan", "Ruban", 2111);
+            hr.addWorker(emp);
+            hr.toStringList();
+        } catch (FieldLenghtException ex) {
             System.out.println(ex.getMessage());
-        }
-        catch (IncorrectSalaryException ex){
+        } catch (IncorrectSalaryException ex) {
             System.out.println(ex.getMessage());
-        }
-
-        try{
-            Employee emp=new Employee("Ivan", "Ruban", 5555);
-            emp.PrintEmployee();
-        }catch(FieldLenghtException ex){
-            System.out.println(ex.getMessage());
-        }
-        catch (IncorrectSalaryException ex){
+        } catch (EmployeeInRegistryExc ex) {
             System.out.println(ex.getMessage());
         }
 
-        try{
-            Employee emp=new Employee("Ivan", "Ruban1dsfseferert", -2);
-            emp.PrintEmployee();
-        }catch(FieldLenghtException ex){
+        try {
+            Manager emp2 = new Manager("Anton", 200);
+            hr.addWorker(emp2);
+            hr.toStringList();
+        } catch (EmployeeInRegistryExc ex) {
             System.out.println(ex.getMessage());
         }
-        catch (IncorrectSalaryException ex){
+
+        System.out.println("-----Exception check------");
+        try {
+            Manager emp2 = new Manager("Anton", 200);
+            hr.addWorker(emp2);
+
+        } catch (EmployeeInRegistryExc ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            hr.toStringList();
         }
+
     }
 }
