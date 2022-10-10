@@ -1,6 +1,8 @@
 package com.example.proj1;
 
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Employee {
     protected int id;
@@ -8,6 +10,7 @@ public class Employee {
     protected String name;
     protected String surname;
     protected double salary;
+    protected List<Employee> subordinates;
 
     public Employee(String name, String surname, double salary) throws FieldLenghtException, IncorrectSalaryException {
         this.id = nextid++;
@@ -29,6 +32,19 @@ public class Employee {
             this.salary = salary;
         }
 
+        subordinates = new ArrayList<Employee>();
+    }
+
+    public void add(Employee e) {
+        subordinates.add(e);
+    }
+
+    public void remove(Employee e) {
+        subordinates.remove(e);
+    }
+
+    public List<Employee> getSubordinates(){
+        return subordinates;
     }
 
     public Employee() {
