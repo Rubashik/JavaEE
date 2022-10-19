@@ -1,81 +1,53 @@
+import java.util.HashMap;
+import java.util.Map;
+
+/*it is our originator class*/
 public class Stats {
+    private Map<String,Integer> attrib;
 
-    private int str;
-    private int dex;
-    private int con;
-    private int inte;
-    private int wis;
-    private int cha;
-
-    Stats(int s, int d,int c, int i, int w, int ch){
-        this.str=s;
-        this.dex=d;
-        this.con=c;
-        this.inte=i;
-        this.wis=w;
-        this.cha=ch;
+    public Stats(int s, int d,int c, int i, int w, int ch){
+        this.attrib=new HashMap<String,Integer>();
+        this.attrib.put("Strength", s);
+        this.attrib.put("Dexterity", d);
+        this.attrib.put("Constitution", c);
+        this.attrib.put("Intelligence", i);
+        this.attrib.put("Wisdom", w);
+        this.attrib.put("Charisma", ch);
     }
 
-
-    public int getStr() {
-        return str;
+    public Map<String, Integer> getAttrib() {
+        return attrib;
     }
 
-    public int getDex() {
-        return dex;
-    }
-
-    public int getCon() {
-        return con;
-    }
-
-    public int getInte() {
-        return inte;
-    }
-
-    public int getWis() {
-        return wis;
-    }
-
-    public int getCha() {
-        return cha;
+    public void setAttrib(Map<String, Integer> attrib) {
+        this.attrib = attrib;
     }
 
     public static Stats generate(){
         return new Stats(Dice.rollstat(),Dice.rollstat(),Dice.rollstat(),Dice.rollstat(),Dice.rollstat(),Dice.rollstat());
     }
     public void printStats(){
-        System.out.println("~~~~~Attributes Sheet~~~~\nStrength:"+str+
-                "\nDexterity:"+dex+"\nConstitution:"+con+
-                "\nIntelligence:"+inte+"\nWisdom:"+wis+"\nCharisma:"+cha);
+        System.out.println("~~~~~Attributes Sheet~~~~\nStrength:"+this.attrib.get("Strength")+
+                "\nDexterity:"+this.attrib.get("Dexterity")+"\nConstitution:"+this.attrib.get("Constitution")+
+                "\nIntelligence:"+this.attrib.get("Intelligence")+"\nWisdom:"+this.attrib.get("Wisdom")+
+                "\nCharisma:"+this.attrib.get("Charisma")+"\n");
     }
     public Memento save(){
 
-        return new Memento(this.str,this.dex,this.con,this.inte,this.wis,this.cha);
+        return new Memento(attrib);
 
     }
     public void undoToLastSave(Object obj){
         Memento memento = (Memento) obj;
-        this.str=memento.str;
-        this.dex=memento.dex;
-        this.con=memento.con;
-        this.inte=memento.inte;
-        this.wis=memento.wis;
-        this.cha=memento.cha;
-
+        this.attrib=memento.attrib;
     }
     private class Memento {
 
-        private int str,dex,con,inte,wis, cha;
+        private Map<String,Integer> attrib;
 
 
-        Memento(int s, int d,int c, int i, int w, int ch){
-            this.str=s;
-            this.dex=d;
-            this.con=c;
-            this.inte=i;
-            this.wis=w;
-            this.cha=ch;
+        Memento(Map<String,Integer> attrib){
+            this.attrib=attrib;
         }
 
     }

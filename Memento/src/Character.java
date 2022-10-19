@@ -1,10 +1,20 @@
+import java.util.Set;
+
 public class Character {
     private String name;
-    private String dndclass;
-    private String race;
-    private Stats atributes;
+    private CharacterClass dndclass;
+    private CharacterRace race;
+    private Stats chStats;
 
-    public Character(String name, String dndclass, String race) {
+    public CharacterRace getRace() {
+        return race;
+    }
+
+    public void setRace(CharacterRace race) {
+        this.race = race;
+    }
+
+    public Character(String name, CharacterClass dndclass, CharacterRace race) {
         this.name = name;
         this.dndclass = dndclass;
         this.race = race;
@@ -18,31 +28,28 @@ public class Character {
         this.name = name;
     }
 
-    public String getDndclass() {
-        return dndclass;
-    }
-
-    public void setDndclass(String dndclass) {
-        this.dndclass = dndclass;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
     public Stats getAtributes() {
-        return atributes;
+        return chStats;
+    }
+    public void addRaceBonuses() {
+        System.out.println("Recalculating attributes for "+this.race.toString());
+        Set<String> key=this.chStats.getAttrib().keySet();
+        for(String title:key){
+            int val=this.chStats.getAttrib().get(title)+this.race.getRaceBonuses().getAttrib().get(title);
+            this.chStats.getAttrib().put(title, val);
+        }
     }
 
-    public void setAtributes(Stats atributes) {
-        this.atributes = atributes;
+    public void setAtributes(Stats attributes) {
+        this.chStats = attributes;
     }
     public void printSheet(){
-        System.out.println("Name: "+name+"\nClass: "+dndclass+"\nRace: "+race);
-        atributes.printStats();
+        System.out.println("Name: "+name+"\nClass: "+dndclass);
+        race.print();
+        chStats.printStats();
+    }
+
+    public void battleCry(){
+        race.shout();
     }
 }
