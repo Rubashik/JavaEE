@@ -1,6 +1,7 @@
 import java.util.Set;
+import java.util.TreeMap;
 
-public class Character {
+public class Character implements DataElement {
     private String name;
     private CharacterClass dndclass;
     private CharacterRace race;
@@ -51,5 +52,14 @@ public class Character {
 
     public void battleCry(){
         race.shout();
+    }
+
+    public CharacterClass getDndClass() {
+        return dndclass;
+    }
+
+    @Override
+    public TreeMap access(DataElementsVisitor vis) {
+        return vis.visit(this);
     }
 }

@@ -1,12 +1,10 @@
 package com.example.proj1;
 
-import javax.naming.Name;
-
 public class Main {
     public static void main(String[] args) {
         HRList hr = HRList.getInstance();
         try {
-            Employee emp = new Employee("Ivan", "Ruban", 2111);
+            Employee emp = new Employee("Ivan", "Ruban", -213);
             hr.addWorker(emp);
             hr.toStringList();
         } catch (FieldLenghtException ex) {

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-public class Sorcerer extends CharacterClass{
+
+public class Sorcerer extends CharacterClass {
 
     private List<String> spells;
 
@@ -21,4 +22,5 @@ public class Sorcerer extends CharacterClass{
         }
 
     }
+
 }

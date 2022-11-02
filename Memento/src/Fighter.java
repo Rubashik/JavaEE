@@ -1,4 +1,6 @@
-public class Fighter extends CharacterClass{
+
+
+public class Fighter extends CharacterClass {
 
     private String perk;
 
@@ -12,4 +14,6 @@ public class Fighter extends CharacterClass{
     public void printMagicka() {
         System.out.println("Class: "+name+" can:"+perk);
     }
+
+
 }

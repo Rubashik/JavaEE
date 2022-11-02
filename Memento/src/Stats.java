@@ -1,8 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /*it is our originator class*/
-public class Stats {
+public class Stats implements DataElement{
     private Map<String,Integer> attrib;
 
     public Stats(int s, int d,int c, int i, int w, int ch){
@@ -41,6 +42,12 @@ public class Stats {
         Memento memento = (Memento) obj;
         this.attrib=memento.attrib;
     }
+
+    @Override
+    public TreeMap access(DataElementsVisitor vis) {
+        return vis.visit(this);
+    }
+
     private class Memento {
 
         private Map<String,Integer> attrib;
