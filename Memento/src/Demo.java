@@ -13,7 +13,7 @@ public class Demo {
         FileWriter file = new FileWriter("output.json");
 
         Character player1=new Character("Thorin II \"Oakenshield\"",
-                ClassFactory.getClass("Barbarian"),
+                ClassFactory.getClass("Fighter"),
                 RaceFactory.getRace(new DwarfFactory(), "Mountain Dwarf"));
         player1.setAtributes(Stats.generate());
         player1.addRaceBonuses();
@@ -32,7 +32,7 @@ public class Demo {
         file.write(jsonObject.toJSONString());
         list.clear();
         Character player2=new Character("Feanor of Noldor",
-                ClassFactory.getClass("Wizard"),
+                ClassFactory.getClass("Sorcerer"),
                 RaceFactory.getRace(new ElfFactory(), "High Elf"));
         player2.setAtributes(Stats.generate());
         player2.addRaceBonuses();
